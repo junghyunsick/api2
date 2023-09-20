@@ -59,7 +59,7 @@ class SearchFragment : Fragment() {
             val query = binding.etSearch.text.toString()
             if (query.isNotEmpty()){
                 Utils.saveLastSearch(requireContext(), query)
-                adapter.clearItems()
+                adapter.clearItem()
                 fetchImageResults(query)
             }else{
                 Toast.makeText(mContext, "검색어를 입력해 주세요.", Toast.LENGTH_SHORT).show()

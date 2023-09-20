@@ -29,11 +29,11 @@ class MainActivity : AppCompatActivity() {
         setFragment(SearchFragment())
     }
     private fun setFragment(frag : Fragment){
-        supportFragmentManager.commit{
+        supportFragmentManager.beginTransaction().apply {
             replace(R.id.frameLayout, frag)
             setReorderingAllowed(true)
             addToBackStack(null)
-        }
+        }.commit()
     }
 
     fun addLikedItem(item: SearchItemModel){

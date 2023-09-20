@@ -10,10 +10,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.api2.Utils.getDateFromTimestampWithFormat
 import com.example.api2.databinding.SearchItemBinding
+import com.bumptech.glide.Glide
 
 class BookmarkAdapter(var mContext: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var items = mutableListof<SearchItemModel>()
+    var items = mutableListOf<SearchItemModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = SearchItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,12 +25,12 @@ class BookmarkAdapter(var mContext: Context): RecyclerView.Adapter<RecyclerView.
 
         Glide.with(mContext)
             .load(items[position].url)
-            .into(holder as ItemViewHolder).iv_thum_image
-        holder.tv_title.text = items[position].tilte
+            .into((holder as ItemViewHolder).iv_thum_image)
+        holder.tv_title.text = items[position].title
         holder.iv_like.visibility = View.GONE
         holder.tv_datetime.text =
             getDateFromTimestampWithFormat(
-                items[position].dataTime,
+                items[position].dateTime,
             "yyy-MM-dd'T'HH:mm:ss.SSS+09:00",
             "yyyy-MM-dd HH:mm:ss"
         )

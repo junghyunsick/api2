@@ -2,6 +2,8 @@ package com.example.api2
 
 import android.content.Context
 import com.example.api2.Constants.PREF_KEY
+import com.example.api2.Constants.PREF_NAME
+import java.sql.Date
 import java.sql.Timestamp
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -17,7 +19,7 @@ object Utils {
         var res = ""
         try {
             val format = SimpleDateFormat(fromFormatformat)
-            date = format.parse(timestamp)
+            date = format.parse(timestamp) as Date?
         }catch (e: ParseException){
             e.printStackTrace()
         }
@@ -27,6 +29,13 @@ object Utils {
     }
 
     fun saveLastSearch(context: Context, query: String){
-        val prefs = context.getSharedPreferences(PREF_KEY, null)
+        val prefs = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
+        prefs.edit().putString(PREF_KEY, query).apply()
+    }
+
+    fun getLastSearch(context: Context):String?{
+        val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        return prefs.getString(PREF_KEY, null)
     }
 }
+

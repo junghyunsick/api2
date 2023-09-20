@@ -9,7 +9,9 @@ import android.widget.TextView
 import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.api2.Utils.getDateFromTimestampWithFormat
 import com.example.api2.databinding.SearchItemBinding
+import com.bumptech.glide.Glide
 
 class SearchAdapter(private val mContext: Context): RecyclerView.Adapter<SearchAdapter.ItemViewHolder>() {
     var items = ArrayList<SearchItemModel>()
@@ -31,15 +33,15 @@ class SearchAdapter(private val mContext: Context): RecyclerView.Adapter<SearchA
             .load(currentItem.url)
             .into(holder.iv_thum_image)
         holder.iv_like.visibility = if(currentItem.isLike) View.VISIBLE else View.INVISIBLE
-        holder.tv_title.text = currentItem.tilte
+        holder.tv_title.text = currentItem.title
         holder.tv_datetime.text = getDateFromTimestampWithFormat(
-            currentItem.dataTime,
+            currentItem.dateTime,
             "yyy-MM-dd'T'HH:mm:ss.SSS+09:00",
             "yyyy-MM-dd HH:mm:ss"
         )
     }
 
-    override fun getItemCount() = item.size
+    override fun getItemCount() = items.size
 
     inner class ItemViewHolder(binding: SearchItemBinding):RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
