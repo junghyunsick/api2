@@ -2,10 +2,38 @@ package com.example.api2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils.replace
+import androidx.fragment.app.Fragment
+import com.example.api2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
+    var likeItems: ArrayList<SearchItemModel> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.run {
+            btnSearchFragment.setOnClickListener {
+                setFragment(SearchFragment())
+            }
+            btnBookmarkFragment.setOnClickListener {
+                setFragment(BookmarkFragment())
+            }
+        }
+
+        setFragment(SearchFragment())
     }
+    private fun setFragment(frag : Fragment){
+        supportFragmentManager.commit{
+            replace(R.id.frameLayout, frag)
+            setReorderingAllowed(true)
+            addToBackStack(null)
+        }
+    }
+
 }
