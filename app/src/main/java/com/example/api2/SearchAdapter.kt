@@ -55,17 +55,16 @@ class SearchAdapter(private val mContext: Context): RecyclerView.Adapter<SearchA
             cl_thumb_item.setOnClickListener(this)
         }
 
-        override fun OnClick(view: View) {
-            val position = adapterPostion.takeIf { it != RecyclerView.NO_POSITION } ?: return
+        override fun onClick(view: View) {
+            val position = adapterPosition.takeIf { it != RecyclerView.NO_POSITION } ?:return
             val item = items[position]
 
             item.isLike = !item.isLike
-            if (item.isLike) {
+            if (item.isLike){
                 (mContext as MainActivity).addLikedItem(item)
-            } else {
+            }else{
                 (mContext as MainActivity).removeLikedItem(item)
             }
-
             notifyItemChanged(position)
         }
 

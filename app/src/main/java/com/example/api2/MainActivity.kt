@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    var likeItems: ArrayList<SearchItemModel> = ArrayList()
+    var likedItems: ArrayList<SearchItemModel> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,6 +34,16 @@ class MainActivity : AppCompatActivity() {
             setReorderingAllowed(true)
             addToBackStack(null)
         }
+    }
+
+    fun addLikedItem(item: SearchItemModel){
+        if (!likedItems.contains(item)){
+            likedItems.add(item)
+        }
+    }
+
+    fun removeLikedItem(item: SearchItemModel){
+        likedItems.remove(item)
     }
 
 }

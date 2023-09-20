@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.api2.Utils.getDateFromTimestampWithFormat
 import com.example.api2.databinding.SearchItemBinding
 
 class BookmarkAdapter(var mContext: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -51,6 +52,7 @@ class BookmarkAdapter(var mContext: Context): RecyclerView.Adapter<RecyclerView.
 
             cl_item.setOnClickListener{
                 val position = adapterPosition
+                (mContext as MainActivity).removeLikedItem(items[position])
                 if (position != RecyclerView.NO_POSITION){
                     items.removeAt(position)
                     notifyItemRemoved(position)
