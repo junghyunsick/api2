@@ -15,11 +15,11 @@ object Utils {
         fromFormatformat: String?,
         toFormatformat: String?
     ):String{
-        var date: Date? = null
+        var date: java.util.Date? = null
         var res = ""
         try {
             val format = SimpleDateFormat(fromFormatformat)
-            date = format.parse(timestamp) as Date?
+            date = format.parse(timestamp)
         }catch (e: ParseException){
             e.printStackTrace()
         }
