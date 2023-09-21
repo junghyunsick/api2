@@ -29,7 +29,7 @@ object Utils {
     }
 
     fun saveLastSearch(context: Context, query: String){
-        val prefs = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
+        val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         prefs.edit().putString(PREF_KEY, query).apply()
     }
 

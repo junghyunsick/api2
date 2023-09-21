@@ -50,7 +50,7 @@ class SearchFragment : Fragment() {
         binding.rvSearchResult.adapter = adapter
         binding.rvSearchResult.itemAnimator = null
 
-        val lastSearch = Utils.getLastSearch(requireContext())
+       val lastSearch = Utils.getLastSearch(requireContext())
         binding.etSearch.setText(lastSearch)
 
     }
